@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juhe.testmanage.dao.UserDao">
+    <select id="queryUser" parameterType="map" resultType="map">
+        select * from user_table
+    </select>
+
+    <insert id="addUser" parameterType="map">
+        insert into user_table (id, username, password, salt) values (
+            #{id}, #{username}, #{password}, #{salt}
+        )
+    </insert>
+
+    <select id="queryUserId" parameterType="map" resultType="map">
+        select id from user_table where username = #{admin}
+    </select>
+
+    <update id="updateUser" parameterType="map">
+        update user_table set salt = #{salt}, username=#{username}, password=#{password} where id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="map">
+        delete from user_table where id = #{id}
+    </delete>
+
+    <select id="userSingle" resultType="map" parameterType="map">
+        select id, salt, username, password from user_table where username = #{username}
+    </select>
+</mapper>

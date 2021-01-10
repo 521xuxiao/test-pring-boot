@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juhe.testmanage.dao.BoyDao">
+    <insert id="addBoy" parameterType="map">
+        insert into boy_table (
+            id, name
+        ) values (
+            #{id}, #{name}
+        )
+    </insert>
+    <select id="queryBoy" parameterType="map" resultType="map">
+        select * from boy_table
+    </select>
+
+    <update id="updateBoy" parameterType="map">
+        update boy_table set name = #{name} where id = #{id}
+    </update>
+
+    <delete id="deleteBoy" parameterType="map">
+        delete from boy_table where id = #{id}
+    </delete>
+</mapper>

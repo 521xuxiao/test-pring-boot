@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juhe.testmanage.dao.AreaDao">
+    <insert id="addArea" parameterType="map">
+        insert into area_table (
+            id, parent_id, name
+        ) values (
+            #{id}, #{parentId}, #{name}
+        )
+    </insert>
+
+    <update id="updateArea" parameterType="map">
+        update area_table set name = #{name} where id = #{id}
+    </update>
+
+    <delete id="deleteArea" parameterType="map">
+        delete from area_table where id = #{id}
+    </delete>
+
+    <select id="queryArea" parameterType="map" resultType="map">
+        select * from area_table where parent_id = #{id}
+    </select>
+
+    <select id="queryAreatList" resultType="map" parameterType="map">
+        select * from area_table
+    </select>
+</mapper>

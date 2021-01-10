@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juhe.testmanage.dao.PageHelperDao">
+    <select id="page" parameterType="map" resultMap="map1">
+        SELECT id, building_name FROM building
+    </select>
+    <resultMap id="map1" type="map">
+        <result column="id" property="id" />
+        <result column="building_name" property="building_name" />
+        <collection property="roomList" ofType="map" select="queryRoom" column="id" />
+    </resultMap>
+    <select id="queryRoom" resultType="map" parameterType="map">
+        select * from room where building_id = #{id}
+    </select>
+</mapper>

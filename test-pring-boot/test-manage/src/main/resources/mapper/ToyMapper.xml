@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.juhe.testmanage.dao.ToyDao">
+    <insert id="addToy" parameterType="map">
+        insert into toy_table (
+            id, boy_id, area_id, time, img_url
+        ) values (
+            #{id}, #{boyId}, #{areaId}, #{time}, #{imgUrl}
+        )
+    </insert>
+
+    <insert id="addToys" parameterType="map">
+        insert into toy_table (
+            id, boy_id, area_id, time, img_url
+        ) values (
+            #{id}, #{boyId}, #{areaId}, #{time}, #{imgUrl}
+        )
+    </insert>
+
+    <select id="queryToy" parameterType="map" resultType="map">
+        select a.id, a.boy_id boyId, b.name areaName, a.time,
+                a.area_id areaId, c.name boyName, a.img_url imgUrl
+                from toy_table a LEFT JOIN area_table b on a.area_id = b.id
+                LEFT JOIN boy_table c on a.boy_id = c.id
+    </select>
+
+    <update id="params" parameterType="map">
+        update toy_table set id = #{id}
+        <if test="boyId != null and boyId != ''">
+            ,boy_id = #{boyId}
+        </if>
+        <if test="areaId != null and areaId != ''">
+            , area_id = #{areaId}
+        </if>
+        <if test="time != null and time != ''">
+            , time = #{time}
+        </if>
+        <if test="imgUrl != null and imgUrl != ''">
+            ,img_url = #{imgUrl}
+        </if>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteToy" parameterType="map">
+        delete from toy_table where id = #{id}
+    </delete>
+
+    <select id="downloadWasherChargrBusiness" parameterType="map" resultType="map">
+         select a.id,  b.name areaName, a.time,
+                 c.name boyName, a.img_url imgUrl
+                from toy_table a LEFT JOIN area_table b on a.area_id = b.id
+                LEFT JOIN boy_table c on a.boy_id = c.id
+    </select>
+
+    <insert id="uploadExcel" parameterType="map">
+        INSERT into `excel-inserdata` (num, phone) values
+        <foreach collection="list" separator="," item="item">
+            (#{item.id}, #{item.phone})
+        </foreach>
+    </insert>
+
+    <select id="socketList" parameterType="map" resultType="map">
+        select a.id, a.boy_id boyId, b.name areaName, a.time,
+                a.area_id areaId, c.name boyName, a.img_url imgUrl
+                from toy_table a LEFT JOIN area_table b on a.area_id = b.id
+                LEFT JOIN boy_table c on a.boy_id = c.id
+    </select>
+
+    <insert id="addData" parameterType="map">
+        insert into `excel-inserdata` (num, phone) values (#{num}, #{phone})
+    </insert>
+</mapper>
