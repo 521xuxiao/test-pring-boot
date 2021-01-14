@@ -28,6 +28,6 @@ public class GloableException {
         String errMsg = sw.toString();
         logger.error(errMsg);
 
-        return new ReturnData(e);
+        return new ReturnData("系统异常");
     }
 }
