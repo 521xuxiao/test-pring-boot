@@ -71,9 +71,9 @@ public class ToyController {
         }
         String imgName = request.getParameter("imgName"); //  全段传过来的只是图片的名字
         if(!(imgName==null || "".equals(imgName))) {     // 2, 删除已经存在的图片
-            String fullpathDelete = imagePath + imgName;   // 拼成完整的图片路径
+            String fullpathDelete = imagePath + imgName;   // 拼成完整的图片路径(本服务器本地的存放文件的路径)
             File files = new File(fullpathDelete);        //  
-            files.delete();                               //  删除文件必须是可以访问的王铮路径
+            files.delete();                               //  删除文件必须是服务器本地的存储路径
         }
         try {
             file.transferTo(dest);
