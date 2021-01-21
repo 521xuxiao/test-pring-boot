@@ -69,11 +69,11 @@ public class ToyController {
         if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdirs();
         }
-        String imgName = request.getParameter("imgName");
+        String imgName = request.getParameter("imgName"); //  全段传过来的只是图片的名字
         if(!(imgName==null || "".equals(imgName))) {     // 2, 删除已经存在的图片
-            String fullpathDelete = imagePath + imgName;
-            File files = new File(fullpathDelete);
-            files.delete();
+            String fullpathDelete = imagePath + imgName;   // 拼成完整的图片路径
+            File files = new File(fullpathDelete);        //  
+            files.delete();                               //  删除文件必须是可以访问的王铮路径
         }
         try {
             file.transferTo(dest);
