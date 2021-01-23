@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class Aops {
+    //    Bean   //  指定到某个类上面
+     @Around("within(com.juhe.testmanage.service.impl.ToyServiceImpl)")  // AOP到某个类上
     //    @Around("execution(* com.lhdqTest.service.impl.UserServiceImpl.roleGetUser())")  // AOP到某个方法
-    @Around("within(com.juhe.testmanage.service.impl.ToyServiceImpl)")  // AOP到某个类上
+    //    
     public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         try{
             System.err.println("开始");
