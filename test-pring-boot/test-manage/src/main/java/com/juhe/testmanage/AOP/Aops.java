@@ -11,8 +11,8 @@ public class Aops {
     //    Bean   //  指定到某个类上面
      @Around("within(com.juhe.testmanage.service.impl.ToyServiceImpl)")  // AOP到某个类上
     //    @Around("execution(* com.lhdqTest.service.impl.UserServiceImpl.roleGetUser())")  // AOP到某个方法
-    //    
-    public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    //    @Around("execution(int com.lhdqTest.service..*.*(..))")  // service下的所有的包下的所有的类下的所有方法下的所有参数，返回值为int类型
+      public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         try{
             System.err.println("开始");
             Object list = proceedingJoinPoint.proceed();  // 调用下一个切面或者目标方法
