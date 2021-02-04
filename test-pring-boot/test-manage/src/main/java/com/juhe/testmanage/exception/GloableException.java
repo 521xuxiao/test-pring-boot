@@ -29,12 +29,15 @@ public class GloableException {
         logger.error(errMsg);
 
         ReturnData returnData = new ReturnData();
+         returnData.setSuccess(false);
         if(e instanceof BadSqlGrammarException){
             returnData.setResultMessage("系统异常");
-            returnData.setSuccess(false);
-        }else if(e instanceof RuntimeException) {
+        }else if(e instanceof SelfException) {
             returnData.setResultMessage(e.getMessage());
-            returnData.setSuccess(false);
+        }else if(e instanceof RuntimeException) {
+            returnData.setResultMessage("系统异常");
+        }else{
+            returnData.setResultMessage("系统异常");
         }
         return returnData;
     }
