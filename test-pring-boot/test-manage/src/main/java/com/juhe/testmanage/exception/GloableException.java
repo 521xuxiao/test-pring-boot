@@ -33,7 +33,7 @@ public class GloableException {
         if(e instanceof BadSqlGrammarException){
             returnData.setResultMessage("系统异常");
         }else if(e instanceof SelfException) {
-            returnData.setResultMessage(e.getMessage());
+            returnData.setResultMessage(e);
         }else if(e instanceof RuntimeException) {
             returnData.setResultMessage("系统异常");
         }else{
